@@ -1,5 +1,5 @@
-import puppeteer from "puppeteer-core";
-import pool from "../config/db.js"; // Koneksi pool MySQL
+import puppeteer from "puppeteer"; // Ganti puppeteer-core jadi puppeteer
+import pool from "../config/db.js";
 import fetch from "node-fetch";
 
 export async function updateVideoUrls() {
@@ -7,10 +7,8 @@ export async function updateVideoUrls() {
 
   try {
     browser = await puppeteer.launch({
-      headless: false, // Ganti true untuk produksi
-      executablePath:
-        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: "new", // headless:true akan otomatis
+      args: ["--no-sandbox", "--disable-setuid-sandbox"], // penting di Railway
     });
 
     const page = await browser.newPage();
